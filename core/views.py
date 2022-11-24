@@ -128,7 +128,7 @@ def detailPatient(request,id):
     patient = Patient.objects.get(id = id)
     
     context = {
-        'Patient':Patient
+        'patient':patient
     }
     
     template_name = 'patient/detail_patient.html'
@@ -165,15 +165,15 @@ def addPatient(request):
 # * Update Patient
 @login_required
 def updatePatient(request,id):
-    patients = Patient.objects.get(id = id)
+    patient = Patient.objects.get(id = id)
     if request.method == 'POST':
 
-        form = PatientForm(request.POST,request.FILES, instance=patients)
+        form = PatientForm(request.POST,request.FILES, instance=patient)
         if form.is_valid():
             form.save()
             return redirect('list_patient')
     else:
-        form = PatientForm(instance=patients)
+        form = PatientForm(instance=patient)
 
     context = {
         'form': form
@@ -262,15 +262,15 @@ def addAppointment(request):
 # * Update Appointment
 @login_required
 def updateAppointment(request,id):
-    appointments = Appointment.objects.get(id = id)
+    appointment = Appointment.objects.get(id = id)
     if request.method == 'POST':
 
-        form = AppointmentForm(request.POST,request.FILES, instance=appointments)
+        form = AppointmentForm(request.POST,request.FILES, instance=appointment)
         if form.is_valid():
             form.save()
             return redirect('list_appointment')
     else:
-        form = AppointmentForm(instance=appointments)
+        form = AppointmentForm(instance=appointment)
 
     context = {
         'form': form
@@ -284,7 +284,6 @@ def updateAppointment(request,id):
 @login_required
 def deleteAppointment(request,id):
     appointment = appointment.objects.get(id = id)
-    
     if request.method == 'POST':
         appointment.delete()
         return redirect('list_appointment')
