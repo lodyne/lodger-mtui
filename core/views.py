@@ -1,9 +1,12 @@
 from django.shortcuts import render,redirect
 
+from django.contrib import messages
+
 from core.forms import (
     DoctorForm,
     PatientForm,
-    AppointmentForm
+    AppointmentForm,
+    UserRegisterForm
 )
 
 from core.models import (
@@ -54,7 +57,7 @@ def addDoctor(request):
         if form.is_valid():
             try:
                 form.save()
-                return redirect('core:list_doctor')
+                return redirect('list_doctor')
 
             except Exception as err:
                 print(err)
@@ -80,7 +83,7 @@ def updateDoctor(request,id):
         form = DoctorForm(request.POST,request.FILES, instance=doctors)
         if form.is_valid():
             form.save()
-            return redirect('core:list_doctor')
+            return redirect('list_doctor')
     else:
         form = DoctorForm(instance=doctors)
 
@@ -99,7 +102,7 @@ def deleteDoctor(request,id):
     
     if request.method == 'POST':
         doctor.delete()
-        return redirect('core:list_doctor')
+        return redirect('list_doctor')
     
     context = {
         'doctor': doctor
@@ -146,7 +149,7 @@ def addPatient(request):
         if form.is_valid():
             try:
                 form.save()
-                return redirect('core:list_patient')
+                return redirect('list_patient')
 
             except Exception as err:
                 print(err)
@@ -172,7 +175,7 @@ def updatePatient(request,id):
         form = PatientForm(request.POST,request.FILES, instance=patients)
         if form.is_valid():
             form.save()
-            return redirect('core:list_patient')
+            return redirect('list_patient')
     else:
         form = PatientForm(instance=patients)
 
@@ -191,7 +194,7 @@ def deletePatient(request,id):
     
     if request.method == 'POST':
         patient.delete()
-        return redirect('core:list_patient')
+        return redirect('list_patient')
     
     context = {
         'patient': patient
@@ -239,7 +242,7 @@ def addAppointment(request):
                 form.patient.save()
                 form.save()
                 
-                return redirect('core:list_appointment')
+                return redirect('list_appointment')
 
             except Exception as err:
                 print(err)
@@ -265,7 +268,7 @@ def updateAppointment(request,id):
         form = AppointmentForm(request.POST,request.FILES, instance=appointments)
         if form.is_valid():
             form.save()
-            return redirect('core:list_appointment')
+            return redirect('list_appointment')
     else:
         form = AppointmentForm(instance=appointments)
 
@@ -284,7 +287,7 @@ def deleteAppointment(request,id):
     
     if request.method == 'POST':
         appointment.delete()
-        return redirect('core:list_appointment')
+        return redirect('list_appointment')
     
     context = {
         'appointment': appointment
@@ -293,3 +296,20 @@ def deleteAppointment(request,id):
     template_name = 'appointment/delete_appointment.html'
     
     return render(request,template_name, context)
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(
+                request, f"Hi {username}, you have been created an account. Login now")
+            return redirect('login')
+    else:
+        form = UserRegisterForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'auth/register.html', context)

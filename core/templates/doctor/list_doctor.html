@@ -9,7 +9,7 @@
                 <div class="col-sm-4 ">
                     <a 
                         type="button" 
-                        href="{% url 'core:add_doctor' %}"
+                        href="{% url 'add_doctor' %}"
                         class="btn btn-sm btn-primary my-2">
                         <i class="fa fa-plus"></i>
                         Add New
@@ -40,19 +40,19 @@
                                 <a
                                     type="button"
                                     class="btn btn-sm btn-secondary"
-                                    href="{% url 'core:doctor_detail' doctor.id %}">
+                                    href="{% url 'doctor_detail' doctor.id %}">
                                     <i class="fa fa-filter" aria-hidden="true"></i>
                                 </a>
                                 <a
                                     type="button"
                                     class="btn btn-sm btn-info"
-                                    href="{% url 'core:doctor_update' doctor.id %}">
+                                    href="{% url 'doctor_update' doctor.id %}">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </a>
                                 <a
                                     type="button"
                                     class="btn btn-sm btn-danger"
-                                    href="{% url 'core:doctor_delete' doctor.id %}">
+                                    href="{% url 'doctor_delete' doctor.id %}">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </a>
                             </td>

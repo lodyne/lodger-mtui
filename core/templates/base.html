@@ -13,6 +13,14 @@
   <body>
     <div class="container">
         {% include 'navbar.html' %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="d-flex justify-content-center  alert alert-{{message.tags}}">
+                    <p>{{message}}</p>
+                </div>
+
+            {% endfor %}
+		{% endif %} 
         
         {% block home %}
             

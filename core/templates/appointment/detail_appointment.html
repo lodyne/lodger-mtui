@@ -9,7 +9,7 @@
                 <div class="col-sm-4 ">
                     <a 
                         type="button" 
-                        href="{% url 'core:add_appointment' %}"
+                        href="{% url 'add_appointment' %}"
                         class="btn btn-sm btn-primary my-2">
                         <i class="fa fa-plus"></i>
                         Add New
@@ -42,19 +42,19 @@
                                 <a
                                     type="button"
                                     class="btn btn-sm btn-secondary"
-                                    href="{% url 'core:appointment_detail' appointment.id %}">
+                                    href="{% url 'appointment_detail' appointment.id %}">
                                     <i class="fa fa-filter" aria-hidden="true"></i>
                                 </a>
                                 <a
                                     type="button"
                                     class="btn btn-sm btn-info"
-                                    href="{% url 'core:appointment_update' appointment.id %}">
+                                    href="{% url 'appointment_update' appointment.id %}">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </a>
                                 <a
                                     type="button"
                                     class="btn btn-sm btn-danger"
-                                    href="{% url 'core:appointment_delete' appointment.id %}">
+                                    href="{% url 'appointment_delete' appointment.id %}">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </a>
                             </td>
