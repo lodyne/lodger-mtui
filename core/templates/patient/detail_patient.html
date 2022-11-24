@@ -1,0 +1,71 @@
+{% include 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="table-title">
+            <div class="row">
+
+                <div class="col-sm-4 ">
+                    <a 
+                        type="button" 
+                        href="{% url 'core:add_patient' %}"
+                        class="btn btn-sm btn-primary my-2">
+                        <i class="fa fa-plus"></i>
+                        Add New
+                    </a>
+                </div>
+            </div>
+        </div>
+        <table class="table table-hover ">
+            <thead class="thead-dark">
+                <tr>
+                    
+                    <th scope="col">First Name</th>
+                    <th scope="col">Middle Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Phone Number</th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                
+               
+                        <tr>
+                            <td>{{ patient.fistname }}</td>
+                            <td>{{ patient.middlename }}</td>
+                            <td>{{ patient.surname }}</td>
+                            <td>{{ patient.age }}</td>
+                            <td>{{ patient.address }}</td>
+                            <td>{{ patient.phone_number }}</td>
+                           
+                            <td>
+                                <a
+                                    type="button"
+                                    class="btn btn-sm btn-secondary"
+                                    href="{% url 'core:patient_detail' patient.id %}">
+                                    <i class="fa fa-filter" aria-hidden="true"></i>
+                                </a>
+                                <a
+                                    type="button"
+                                    class="btn btn-sm btn-info"
+                                    href="{% url 'core:patient_update' patient.id %}">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </a>
+                                <a
+                                    type="button"
+                                    class="btn btn-sm btn-danger"
+                                    href="{% url 'core:patient_delete' patient.id %}">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                   
+                
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

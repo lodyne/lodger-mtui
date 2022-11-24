@@ -16,6 +16,9 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+def home(request):
+    return render(request,'home.html')
+
 @login_required
 def listDoctor(request):
     
@@ -46,13 +49,12 @@ def detailDoctor(request,id):
 # * Create doctors
 @login_required
 def addDoctor(request):
-
     if request.method == 'POST':
         form = DoctorForm(request.POST, request.FILES)
         if form.is_valid():
             try:
                 form.save()
-                return redirect('core:add_doctor')
+                return redirect('core:list_doctor')
 
             except Exception as err:
                 print(err)
@@ -229,12 +231,14 @@ def detailAppointment(request,id):
 # * Create Appointments
 @login_required
 def addAppointment(request):
-
+    patient = Patient.objects.filter(id=form.patient.id).first()
     if request.method == 'POST':
         form = AppointmentForm(request.POST, request.FILES)
         if form.is_valid():
             try:
+                form.patient.save()
                 form.save()
+                
                 return redirect('core:list_appointment')
 
             except Exception as err:

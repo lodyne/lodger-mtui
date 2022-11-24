@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="row mt-3">
+        <div class="col-12 col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <form method = 'POST' enctype = 'multipart/form-data'>
+                        {% csrf_token %}
+
+                        <div class="form-group row">
+                            <div class="col-md-6 mb-3">
+                                <label for="Patient">Patient</label>
+                                {{ form.patient.errors }}
+                                {% render_field form.patient class="form-control" placeholder=form.patient.label %}
+                            </div>
+                                
+                            <div class="col-md-6 mb-3">
+                                <label for="Doctor">Doctor</label>
+                                {{ form.doctor.errors }}
+                                {% render_field form.doctor class="form-control" placeholder=form.doctor.label %}
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="Time">Time</label>
+                                    {{ form.appointment_time.errors }}
+                                    {% render_field form.appoiintment_time class="form-control" type="time" placeholder=form.appointment_time.label %}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="Day">Day</label>
+                                    {{ form.appointment_day.errors }}
+                                    {% render_field form.appointment_day class="form-control" placeholder=form.appointment_day.label %}
+                                </div>
+                            </div>
+                        
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-sm text-light px-4 mt-3 mb-0">Save</button>  
+                            <a href="{% url 'core:list_appointment' %}" class="btn btn-success btn-sm text-light px-4 mt-3 mb-0" type="button">Close</a> 
+                        </div>
+
+                    </form>
+                </div>     
+                    
+                </div> <!--end card-body-->                                           
+            </div><!--end card-->
+        </div> <!--end col-->                                          
+    </div><!--end row-->
+
+{% endblock content %}

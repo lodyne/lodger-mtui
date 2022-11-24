@@ -1,0 +1,67 @@
+{% include 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="table-title">
+            <div class="row">
+
+                <div class="col-sm-4 ">
+                    <a 
+                        type="button" 
+                        href="{% url 'core:add_appointment' %}"
+                        class="btn btn-sm btn-primary my-2">
+                        <i class="fa fa-plus"></i>
+                        Add New
+                    </a>
+                </div>
+            </div>
+        </div>
+        <table class="table table-hover ">
+            <thead class="thead-dark">
+                <tr>
+                    
+                    <th scope="col">Patient</th>
+                    <th scope="col">Doctor</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Day</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                
+               
+                    {% for appointment in appointments  %}
+                        <tr>
+                            <td>{{ appointment.patient }}</td>
+                            <td>{{ appointment.doctor }}</td>
+                            <td>{{ appointment.appointment_time}}</td>
+                            <td>{{ appointment.appointment_day}}</td>
+                           
+                            <td>
+                                <a
+                                    type="button"
+                                    class="btn btn-sm btn-secondary"
+                                    href="{% url 'core:appointment_detail' appointment.id %}">
+                                    <i class="fa fa-filter" aria-hidden="true"></i>
+                                </a>
+                                <a
+                                    type="button"
+                                    class="btn btn-sm btn-info"
+                                    href="{% url 'core:appointment_update' appointment.id %}">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </a>
+                                <a
+                                    type="button"
+                                    class="btn btn-sm btn-danger"
+                                    href="{% url 'core:appointment_delete' appointment.id %}">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
