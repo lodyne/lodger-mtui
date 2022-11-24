@@ -52,17 +52,13 @@ def detailDoctor(request,id):
 # * Create doctors
 @login_required
 def addDoctor(request):
+    form = DoctorForm(request.POST, request.FILES)
     if request.method == 'POST':
-        form = DoctorForm(request.POST, request.FILES)
+        
         if form.is_valid():
-            try:
-                form.save()
-                return redirect('list_doctor')
+            form.save()
+            return redirect('list_doctor')
 
-            except Exception as err:
-                print(err)
-        else:
-            print(form.errors)            
     else:
         form = DoctorForm()
         
@@ -91,7 +87,7 @@ def updateDoctor(request,id):
         'form': form
     }
     
-    template_name = 'doctor/edit_doctor.html'
+    template_name = 'doctor/update_doctor.html'
 
     return render(request,template_name,context)
 
@@ -183,7 +179,7 @@ def updatePatient(request,id):
         'form': form
     }
     
-    template_name = 'patient/edit_patient.html'
+    template_name = 'patient/update_patient.html'
 
     return render(request,template_name,context)
 
@@ -234,12 +230,14 @@ def detailAppointment(request,id):
 # * Create Appointments
 @login_required
 def addAppointment(request):
-    patient = Patient.objects.filter(id=form.patient.id).first()
+    
     if request.method == 'POST':
         form = AppointmentForm(request.POST, request.FILES)
+        
         if form.is_valid():
+            # patient = Patient.objects.filter(id=form.patient.id).first()
             try:
-                form.patient.save()
+                # form.patient.save()
                 form.save()
                 
                 return redirect('list_appointment')
@@ -252,7 +250,9 @@ def addAppointment(request):
         form = AppointmentForm()
         
     context = {
-        'form':form
+        'form':form,
+        # 'patient':patient
+        
     }
     
     template_name = 'appointment/add_appointment.html'
@@ -276,7 +276,7 @@ def updateAppointment(request,id):
         'form': form
     }
     
-    template_name = 'appointment/edit_appointment.html'
+    template_name = 'appointment/update_appointment.html'
 
     return render(request,template_name,context)
 

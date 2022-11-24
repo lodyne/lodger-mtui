@@ -25,8 +25,10 @@
                     <th scope="col">Middle Name</th>
                     <th scope="col">Surname</th>
                     <th scope="col">Age</th>
+                    <th scope="col">Gender</th>
                     <th scope="col">Address</th>
                     <th scope="col">Phone Number</th>
+                    <th scope="col">Action</th>
                     
                     
                 </tr>
@@ -36,10 +38,11 @@
                
                     {% for patient in patients  %}
                         <tr>
-                            <td>{{ patient.fistname }}</td>
+                            <td>{{ patient.firstname }}</td>
                             <td>{{ patient.middlename }}</td>
                             <td>{{ patient.surname }}</td>
                             <td>{{ patient.age }}</td>
+                            <td>{{ patient.gender }}</td>
                             <td>{{ patient.address }}</td>
                             <td>{{ patient.phone_number }}</td>
                            

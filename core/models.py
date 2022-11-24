@@ -17,8 +17,7 @@ class Patient(models.Model):
     address = models.CharField(max_length=50)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$')
     phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)
-    created_at = models.DateField(auto_now=False, auto_now_add=False)
-    updated_at = models.DateField(auto_now=False, auto_now_add=False)
+    
     
 
     def __str__(self):
@@ -29,8 +28,7 @@ class Doctor(models.Model):
     firstname = models.CharField(max_length=50)
     middlename = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
-    created_at = models.DateField(auto_now=False, auto_now_add=False)
-    updated_at = models.DateField(auto_now=False, auto_now_add=False)
+    
     
 
     def __str__(self):

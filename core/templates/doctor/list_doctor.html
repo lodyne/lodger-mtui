@@ -24,6 +24,7 @@
                     <th scope="col">First Name</th>
                     <th scope="col">Middle Name</th>
                     <th scope="col">Surname</th>
+                    <th scope="col">Action</th>
                     
                 </tr>
             </thead>
@@ -32,9 +33,10 @@
                
                     {% for doctor in doctors  %}
                         <tr>
-                            <td>{{ doctor.fistname }}</td>
+                            <td>{{ doctor.firstname }}</td>
                             <td>{{ doctor.middlename }}</td>
                             <td>{{ doctor.surname }}</td>
+                            
                            
                             <td>
                                 <a

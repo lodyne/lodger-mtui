@@ -18,15 +18,15 @@ class PatientForm(forms.ModelForm):
     
     class Meta:
         model = Patient
-        fields = ['firstname','middlename','surname','age','gender','phone_number']
-        exclude = ['created_at','updated_at']
+        fields = ['firstname','middlename','surname','age','address','gender','phone_number']
+       
         
 class AppointmentForm(forms.ModelForm):
     
     class Meta:
         model = Appointment
         fields = ['patient','doctor','appointment_time','appointment_day']
-        exclude = ['created_at','updated_at']
+        
         
 
 
