@@ -283,7 +283,7 @@ def updateAppointment(request,id):
 # * Delete Appointment
 @login_required
 def deleteAppointment(request,id):
-    appointment = appointment.objects.get(id = id)
+    appointment = Appointment.objects.get(id = id)
     if request.method == 'POST':
         appointment.delete()
         return redirect('list_appointment')

@@ -22,19 +22,20 @@
                                 {{ form.doctor.errors }}
                                 {% render_field form.doctor class="form-control" placeholder=form.doctor.label %}
                             </div>
+                        </div>
 
-                            <div class="form-group row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="Time">Time</label>
-                                    {{ form.appointment_time.errors }}
-                                    {% render_field form.appoiintment_time class="form-control" type="time" placeholder=form.appointment_time.label %}
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="Day">Day</label>
-                                    {{ form.appointment_day.errors }}
-                                    {% render_field form.appointment_day class="form-control" placeholder=form.appointment_day.label %}
-                                </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 mb-3">
+                                <label for="Time">Time</label>
+                                {{ form.appointment_time.errors }}
+                                {% render_field form.appointment_time class="form-control" type="time" placeholder=form.appointment_time.label %}
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="Day">Day</label>
+                                {{ form.appointment_day.errors }}
+                                {% render_field form.appointment_day class="form-control" placeholder=form.appointment_day.label %}
+                            </div>
+                        </div>
                         
                         </div>
 
