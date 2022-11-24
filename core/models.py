@@ -3,10 +3,17 @@ from django.core.validators import RegexValidator
 # Create your models here.
 
 class Patient(models.Model):
+    
+    GENDER = [
+		('male', 'Male'),
+		('female', 'Female'),
+	]
+    
     firstname = models.CharField(max_length=50)
     middlename = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
     age = models.PositiveSmallIntegerField()
+    gender = models.CharField(max_length=50, choices = GENDER)
     address = models.CharField(max_length=50)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$')
     phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)
